@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  gitlab-runner:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile
+    restart: always
+    volumes:
+      - ./data/:/var/lib/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/gitlab-runner-config:/etc/gitlab-runner
+      - ./data/php_config/7.4/php.ini:/etc/php/7.4/cli/php.ini
+      - /var/run/docker.sock:/var/run/docker.sock
